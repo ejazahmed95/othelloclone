@@ -1,4 +1,4 @@
-﻿namespace RangerRPG.Core {
+﻿namespace EAUnity.Core {
 	public static class Utils {
 		public static bool TryConvertVal<TA, TB>(TA obj, out TB returnVal) {
 			if (obj is TB b) {
@@ -8,5 +8,6 @@
 			returnVal = default(TB);
 			return false;
 		}
+		
 	}
 }

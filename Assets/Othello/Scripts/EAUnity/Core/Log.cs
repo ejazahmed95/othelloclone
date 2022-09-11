@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using RangerRPG.Utility;
+using EAUnity.Utility;
 
-namespace RangerRPG.Core {
+namespace EAUnity.Core {
     public enum LogLevel {
         Trace = 1,
         Debug = 2,

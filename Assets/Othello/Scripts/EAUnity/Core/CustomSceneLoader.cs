@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RangerRPG.Core {
+namespace EAUnity.Core {
 	public class CustomSceneLoader : SingletonBehaviour<CustomSceneLoader> {
 		private static List<string> _scenesList;
 		private static string _loadingScene = "";

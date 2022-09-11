@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RangerRPG.Utility {
+namespace EAUnity.Utility {
     public static class StringExtensions {
         public static string Bold(this string str) => "<b>" + str + "</b>";
         public static string Color(this string str,string clr) => $"<color={clr}>{str}</color>";

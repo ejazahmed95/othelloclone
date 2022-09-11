@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace RangerRPG.Core {
+namespace EAUnity.Core {
     /// <summary>
     /// Only once instance of this can be present at any given point
     /// </summary>

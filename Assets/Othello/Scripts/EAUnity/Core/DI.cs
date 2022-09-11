@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Object = System.Object;
 
-namespace RangerRPG.Core {
+namespace EAUnity.Core {
     /// <summary>
     /// Create and register objects on this for easy access later
     /// </summary>

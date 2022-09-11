@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-namespace RangerRPG.Core {
+namespace EAUnity.Core {
 	public class AudioManager : SingletonBehaviour<AudioManager> {
 		// Audio players components.
 		public AudioSource dialogSource;
