@@ -179,7 +179,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 8025221
-  m_SortingLayer: 1
+  m_SortingLayer: -2
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 83f189aa470f6ea429875705fa64c53a, type: 3}
   m_Color: {r: 0.9150943, g: 0.80718225, b: 0.80718225, a: 0.8}
@@ -263,7 +263,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 8025221
-  m_SortingLayer: 1
+  m_SortingLayer: -2
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 83f189aa470f6ea429875705fa64c53a, type: 3}
   m_Color: {r: 0.630785, g: 0.990566, b: 0.65240955, a: 1}
@@ -494,7 +494,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 8025221
-  m_SortingLayer: 1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 83f189aa470f6ea429875705fa64c53a, type: 3}
   m_Color: {r: 0.8018868, g: 0.6535108, b: 0.5257654, a: 1}
@@ -516,6 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1983121523}
+  - component: {fileID: 1983121524}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -538,3 +539,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1983121524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983121522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9598d6204c8d4e438624553d2eef48e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridDimensions: {x: 8, y: 8}
+  cellPrefab: {fileID: 2452309915675398076, guid: 23577e8840f502a49a19d36c9bff35ad, type: 3}
+  gridParent: {fileID: 1983121522}
+  cellSize: {x: 1, y: 1}
