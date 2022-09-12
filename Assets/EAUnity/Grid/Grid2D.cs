@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace EAUnity.Grid {
@@ -21,7 +20,7 @@ namespace EAUnity.Grid {
         public static List<Vector2Int> DirectionVectors = new List<Vector2Int> {
             new(-1, 1), new(0, 1), new(1, 1),
             new(-1, 0), new(1, 0),
-            new(-1, -1), new(1, -1)
+            new(-1, -1), new(0, -1), new(1, -1)
         };
         
         protected void Awake() {
@@ -50,7 +49,7 @@ namespace EAUnity.Grid {
             for (var y = 0; y < gridDimensions.y; y++) {
                 var row = new List<CellBehavior<T>>();
                 for (var x = 0; x < gridDimensions.x; x++) {
-                    CellBehavior<T> cell = Instantiate(prefab, parent).Init(_cellsInfo[x][y]);
+                    CellBehavior<T> cell = Instantiate(prefab, parent).Init(_cellsInfo[y][x]);
                     cell.transform.localPosition = _zeroCellPosition + new Vector2(x * cellSize.x, y * cellSize.y);
                     row.Add(cell);
                 }
@@ -64,7 +63,11 @@ namespace EAUnity.Grid {
 
         public T GetCell(Vector2Int index) {
             if (!IsValid(index)) return null;
-            return _cellsInfo[index.x][index.y];
+            return _cellsInfo[index.y][index.x];
+        }
+
+        public Vector2 GetCellPosition(Vector2Int index) {
+            return _zeroCellPosition + index * cellSize;
         }
         
     }

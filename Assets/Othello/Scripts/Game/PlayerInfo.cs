@@ -1,10 +1,10 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Othello.Scripts.Game {
+namespace Game {
     [CreateAssetMenu(fileName = "PlayerInfo", menuName = "Game/PlayerInfo")]
     public class PlayerInfo: ScriptableObject {
         public int id;
-        
+        public Sprite coinSprite;
+        public Color color;
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Data;
-using Othello.Scripts.Game;
+using Game;
 using UnityEngine;
 
 namespace Othello.Scripts.Command {

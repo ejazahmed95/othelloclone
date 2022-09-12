@@ -1,7 +1,7 @@
 ﻿using Data;
 using UnityEngine;
 
-namespace Othello.Scripts.Game {
+namespace Game {
     public interface IGameCommandHandler {
         GameSave GetNewGameSave();
         void PlaceCoin(Vector2Int cellIndex, int playerIndex);

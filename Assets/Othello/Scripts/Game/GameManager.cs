@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
 using EAUnity.Core;
 using EAUnity.Event;
+using Othello.Scripts;
 using Othello.Scripts.Command;
-using Othello.Scripts.Game;
 using UnityEngine;
 
 namespace Game {
     public class GameManager : MonoBehaviour, IGameCommandHandler {
         [SerializeField] private OthGrid grid;
-        [SerializeField] private int numPlayers;
+        [SerializeField] private int numPlayers = 2;
         [SerializeField] private List<PlayerInfo> players;
+        [SerializeField] private CoinObjectPool coinPool;
         [SerializeField] private float flipAnimTime = 1.5f;
 
         private int _currentPlayerId;
@@ -22,15 +22,29 @@ namespace Game {
         private Stack<ICommand> _commandStack;
         private Stack<ICommand> _redoStack;
 
-        private void Start() {
-            StartNewGame();
-        }
-        
         public void StartNewGame() {
             if (!SetState(EGameState.Init)) return;
             _commandStack = new Stack<ICommand>();
             _redoStack = new Stack<ICommand>();
-            //StartNewTurnOrEnd
+            StartCoroutine(InitCoins());
+        }
+        
+        private IEnumerator InitCoins() {
+            yield return null;
+            int x = (grid.GridDimensions.x - numPlayers)/2;
+            int y = (grid.GridDimensions.y - numPlayers)/2;
+            for (int j = 0; j < numPlayers; j++) {
+                for (int i = 0; i < numPlayers; i++) {
+                    var cellIndex = new Vector2Int(x + i, y + j);
+                    var playerIndex = (i + j) % numPlayers;
+                    var coin = coinPool.GetNewCoin().Init(players[playerIndex]);
+                    coin.transform.localPosition = grid.GetCellPosition(cellIndex);
+                    grid.GetCell(cellIndex).UpdateCoin(coin);
+                }
+            }
+            _currentPlayerId = 0;
+            yield return new WaitForSeconds(0.5f);
+            SetState(EGameState.TurnStart);
         }
 
         #region GameEvent Handling
@@ -40,7 +54,7 @@ namespace Game {
                 return;
             }
             if (!Validate(cellClickData, _currentPlayerId)) {
-                Log.Info("Invalid Move");
+                Log.Warn($"Invalid Move Index = {cellClickData.CellInfo.Position}");
                 return;
             }
             var command = new PlaceCoinCommand(cellClickData.CellInfo.Position, _currentPlayerId, this);
@@ -95,7 +109,13 @@ namespace Game {
         public void PlaceCoin(Vector2Int cellIndex, int playerIndex) {
             SetState(EGameState.TurnPlaying);
             List<Vector2Int> updateDirs = new List<Vector2Int>();
-            grid.GetCell(cellIndex).CoinId = playerIndex;
+
+            var currentPlayer = players[_currentPlayerId];
+            var coin = coinPool.GetNewCoin().Init(currentPlayer);
+            coin.transform.localPosition = grid.GetCellPosition(cellIndex);
+            grid.GetCell(cellIndex).UpdateCoin(coin);
+            
+            // Find Valid Directions
             foreach (var dirVec in OthGrid.DirectionVectors) {
                 var dist = 1;
                 var pos = cellIndex + dist * dirVec;
@@ -111,11 +131,12 @@ namespace Game {
                 }
             }
 
+            // Flip Coins
             foreach (var dirVec in updateDirs) {
                 var dist = 1;
                 var pos = cellIndex + dist * dirVec;
                 while (grid.GetCell(pos).CoinId != playerIndex) {
-                    grid.GetCell(pos).CoinId = playerIndex;
+                    grid.GetCell(pos).Coin.FlipCoin(currentPlayer);
                     dist++;
                     pos = cellIndex + dist * dirVec;
                 }
