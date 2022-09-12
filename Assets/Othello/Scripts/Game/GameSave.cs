@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game {
+namespace Data {
     public struct GameSave {
         public int NumPlayers;
         public Vector2Int GridSize;

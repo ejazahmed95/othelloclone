@@ -14,7 +14,16 @@ namespace EAUnity.Grid {
         private Vector2 _zeroCellPosition; // Position of bottom left cell
         
         protected bool Initialized = false;
+        
+        public Vector2Int GridDimensions => gridDimensions;
+        public List<List<T>> CellsInfo => _cellsInfo;
 
+        public static List<Vector2Int> DirectionVectors = new List<Vector2Int> {
+            new(-1, 1), new(0, 1), new(1, 1),
+            new(-1, 0), new(1, 0),
+            new(-1, -1), new(1, -1)
+        };
+        
         protected void Awake() {
             _cells = new List<List<CellBehavior<T>>>();
             _cellsInfo = new List<List<T>>();
@@ -47,6 +56,15 @@ namespace EAUnity.Grid {
                 }
                 _cells.Add(row);
             }
+        }
+
+        public bool IsValid(Vector2Int cellIndex) {
+            return (cellIndex.x >= 0 && cellIndex.x < gridDimensions.x) && (cellIndex.y >= 0 && cellIndex.y < gridDimensions.y);
+        }
+
+        public T GetCell(Vector2Int index) {
+            if (!IsValid(index)) return null;
+            return _cellsInfo[index.x][index.y];
         }
         
     }
