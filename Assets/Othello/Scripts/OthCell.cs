@@ -1,8 +1,7 @@
 ﻿using EAUnity.Grid;
-using UnityEngine;
 
-namespace Othello.Scripts {
-    public class OthCell : CellBehavior<OthCellInfo> {
-        
+public class OthCell : CellBehavior<OthCellInfo> {
+    private void OnMouseDown() {
+
     }
 }
