@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player1
   m_EditorClassIdentifier: 
   id: 0
-  coinSprite: {fileID: -2413806693520163455, guid: 55e8699d856c0ba428904302a4719411, type: 3}
-  color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+  coinSprite: {fileID: 868128251, guid: edf6f925d23dd5448b4775d8f3ef3a3c, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}

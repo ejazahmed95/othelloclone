@@ -16,6 +16,11 @@ namespace EAUnity.Event {
         private readonly List<GameEventListener> _eventListeners = 
             new List<GameEventListener>();
 
+        // Using through inspector
+        public void RaiseEmpty() {
+            Raise();
+        }
+        
         public void Raise(IGameEventData data = null) {
             Log.Trace($"Event={name}", "EventRaised");
             for(int i = _eventListeners.Count -1; i >= 0; i--)

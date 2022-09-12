@@ -130,7 +130,7 @@ namespace Game {
                     pos = cellIndex + dist * dirVec;
                 }
             }
-
+            
             // Flip Coins
             foreach (var dirVec in updateDirs) {
                 var dist = 1;
@@ -144,6 +144,7 @@ namespace Game {
 
             StartCoroutine(WaitAndCompleteTurn());
         }
+        
         private IEnumerator WaitAndCompleteTurn() {
             yield return new WaitForSeconds(flipAnimTime);
             SetState(EGameState.TurnComplete);
