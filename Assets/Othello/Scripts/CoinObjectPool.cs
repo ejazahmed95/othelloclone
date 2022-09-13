@@ -16,7 +16,7 @@ namespace Othello.Scripts {
             if (_freeCoins.Count > 0) {
                 Coin coin = _freeCoins[0];
                 _freeCoins.RemoveAt(0);
-                coin.enabled = true;
+                coin.gameObject.SetActive(true);
                 return coin;
             };
             Coin freeCoin = Instantiate(coinPrefab, gameObject.transform);
@@ -24,7 +24,7 @@ namespace Othello.Scripts {
         }
 
         public void DisableCoin(Coin coin) {
-            coin.enabled = false;
+            coin.gameObject.SetActive(false);
             _freeCoins.Add(coin);
         }
     }

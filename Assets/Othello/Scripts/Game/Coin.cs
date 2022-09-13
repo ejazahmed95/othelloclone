@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using EAUnity.Core;
 using UnityEngine;
 
 namespace Game {
@@ -12,8 +14,9 @@ namespace Game {
         
         public Coin Init(PlayerInfo pInfo) {
             _owner = pInfo;
+            _owner.score++;
             coinSprite.sprite = _owner.coinSprite;
-            coinSprite.color = _owner.color;
+            // coinSprite.color = _owner.color;
             return this;
         }
 
@@ -21,7 +24,9 @@ namespace Game {
             if (_owner == pInfo) {
                 return;
             }
+            _owner.score--;
             _owner = pInfo;
+            _owner.score++;
             StartCoroutine(FlippingCoin());
         }
 
@@ -36,7 +41,7 @@ namespace Game {
             }
             newScale = 0f;
             coinSprite.sprite = _owner.coinSprite;
-            coinSprite.color = _owner.color;
+            // coinSprite.color = _owner.color;
             elapsedTime = 0;
             while (newScale<1) {
                 yield return null;
@@ -45,7 +50,10 @@ namespace Game {
                 gameObject.transform.localScale = new Vector3((float)newScale, 1, 1);
             }
         }
-        
-        
+
+        private void OnDisable() {
+            _owner.score--;
+        }
+
     }
 }

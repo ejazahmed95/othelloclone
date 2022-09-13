@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   coinSprite: {fileID: 868128251, guid: edf6f925d23dd5448b4775d8f3ef3a3c, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}

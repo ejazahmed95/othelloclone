@@ -23,5 +23,6 @@ namespace Othello.Scripts.Command {
         public void Undo() {
             _commandHandler.SyncState(_prevGameSave);
         }
+        
     }
 }

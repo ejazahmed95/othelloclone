@@ -6,5 +6,6 @@ namespace Game {
         public int id;
         public Sprite coinSprite;
         public Color color;
+        public int score;
     }
 }
